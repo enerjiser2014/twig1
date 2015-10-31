@@ -1,0 +1,19 @@
+{% extends 'index.tmpl' %}
+
+{% block content %}
+    <h3>У нас вы можете приобрести следующие товары:</h3>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <th>Артикул</th>
+            <th>Наименование товара</th>
+            <th>Описание</th>
+            <th>Цена</th>
+        </thead>
+        <tbody>
+            {% for i in model %}
+                {% include 'tproduct.tmpl' %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
