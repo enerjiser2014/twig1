@@ -34,13 +34,19 @@ trait TActiveRecord
         return (new Db(Conf::Db()))->getRecord(static::class, $sql, [':id' => $id]);
     }
 
+    public function getRecordBy($rowname, $name)
+    {
+        $sql = 'SELECT * FROM ' . $this->getTable() . ' WHERE ' . $rowname . '=:name';
+        return (new Db(Conf::Db()))->getRecord(static::class, $sql, [':name' => $name]);
+    }
+
     protected function insert()
     {
         $sql = 'INSERT INTO ' . $this->getTable() . '(' . implode(',', $this->getColNames()) . ') ' .
             'VALUES (\'' . implode('\',\'', $this->getValues()) . '\');';
 
         $ret = (new Db(Conf::Db()))->sqlExec(static::class,$sql);
-    }
+     }
 
     protected function saveRecord()
     {
