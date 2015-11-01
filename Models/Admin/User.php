@@ -31,7 +31,6 @@ class User extends Model
         // end 1*
             $this->hash = password_hash($password, PASSWORD_DEFAULT);
             $this->save();
-            var_dump($this);
             return true;
         }
         return false;
