@@ -28,6 +28,7 @@ class User extends Model
         if ($validEmail == true) {
             $this->hash = password_hash($password, PASSWORD_DEFAULT);
             $this->save();
+            return true;
         }
         return false;
     }
