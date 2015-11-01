@@ -16,24 +16,23 @@ class User extends Model
         return 'id';
     }
 
-    public function checkPassword()
+    public function checkPassword($password)
     {
-
+        $this->validEmail();
     }
 
     public function setPassword($password)
     {
-        $validEmail = filter_var($this->email, FILTER_VALIDATE_EMAIL);
-        if ($validEmail == true) {
-        // start 1* подумать как переделать это.
-            $tmp=$this->getRecordBy('email',$validEmail);
-            $this->id=$tmp->id;
-        // end 1*
-            $this->hash = password_hash($password, PASSWORD_DEFAULT);
-            $this->save();
-            return true;
+        // проверяем валидность идентификатора пользователя
+        // метод getIdByEmail верент false вслучае невалидного email
+        // если email невалидный ничего не делаем и возвращаем false
+        if ($this->getIdByEmail() == false) {
+            return false;
         }
-        return false;
+        $this->hash = password_hash($password, PASSWORD_DEFAULT);
+        $this->save();
+        return true;
+
     }
 
     public function changePassword()
@@ -45,4 +44,25 @@ class User extends Model
     {
 
     }
+
+    public function validEmail()
+    {
+        $this->email=filter_var($this->email, FILTER_VALIDATE_EMAIL);
+    }
+
+    public function getIdByEmail()
+    {
+        // start 1* подумать как переделать это.
+        $this->validEmail();
+        if (true == (bool)$this->email) {
+            $tmp=null;
+            $tmp = $this->getRecordBy('email', $this->email);
+            $this->id = $tmp->id;
+            return $this->id;
+        }
+        $this->id = false;
+        return false;
+        // end 1*
+    }
+
 }
