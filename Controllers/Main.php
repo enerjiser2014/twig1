@@ -11,7 +11,7 @@ class Site
     public function actionShow()
     {
         $model = new Article();
-        View::display(null,'site.tmpl');
+        View::display(null,'main.tmpl');
     }
 
     public function actionAdd()
