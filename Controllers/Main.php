@@ -6,7 +6,7 @@ use App\Models\Article;
 use App\Views\View;
 
 
-class Site
+class Main
 {
     public function actionShow()
     {
