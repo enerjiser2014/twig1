@@ -18,7 +18,12 @@ class User extends Model
 
     public function checkPassword($password)
     {
-        $this->validEmail();
+        // Получаем все значание объекта из базы
+        $this->getIdByEmail();
+        if (true == password_verify($password,$this->hash)) {
+            return true;
+        }
+        return false;
     }
 
     public function setPassword($password)
