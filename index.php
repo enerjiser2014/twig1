@@ -14,6 +14,18 @@ try {
     return 0;
 }
 
+
+/*
+
+$x = new \App\Models\Admin\User();
+$x->email='mail@yandex.ru';
+var_dump($x->setPassword('123456'));
+var_dump($x->checkPassword('1213456'));
+
+exit;
+
+*/
+
 $route = explode('/',$_GET['__route']);
 
 $controller = $route[0];
@@ -21,7 +33,7 @@ $method = $route[1];
 
 
 if (true == empty($controller)) {
-    $controller = 'App\\Controllers\\Site';
+    $controller = 'App\\Controllers\\Main';
     $method = 'actionShow';
     }
 elseif ('Login' == $controller) {
