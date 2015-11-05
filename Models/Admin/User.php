@@ -57,6 +57,7 @@ class User extends Model
 
     public function getIdByEmail()
     {
+        // TODO:
         // start 1* подумать как переделать это.
         $this->validEmail();
         if (true == (bool)$this->email) {

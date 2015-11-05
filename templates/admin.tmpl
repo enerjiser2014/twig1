@@ -1,0 +1,35 @@
+{% extends 'index.tmpl' %}
+
+{%  block content %}
+    <h1> Панель администратора</h1>
+
+    <!-- Button trigger modal -->
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Посмотреть демо
+          </button>
+
+    {%  set arr =1..20 %}
+    {% set parts = arr | batch(3,'---') %}
+    {% for part in parts %}
+    <p>{{ part | join(',') }}</p>
+    {% endfor %}
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Форма авторизации</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Войити</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
+

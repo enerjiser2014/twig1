@@ -11,7 +11,7 @@ class About
     public function actionShow()
     {
         $model = new Article();
-        View::display(null,'About.tmpl');
+        View::display('About.tmpl', null);
     }
 
     public function actionAdd()

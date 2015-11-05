@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Interfaces\IActiveRecord;
+
 use App\Traits\TActiveRecord as TActiveRecord;
 
 abstract class Model implements IActiveRecord

@@ -19,4 +19,9 @@ class Product
     {
         return $this->getAllRecords();
     }
+
+    public function getProductById($id)
+    {
+        return $this->getRecordById($id);
+    }
 }

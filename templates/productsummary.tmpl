@@ -1,0 +1,13 @@
+{% extends 'index.tmpl' %}
+{% import 'libmacro.tmpl' as lib %}
+
+{% block content %}
+    <h1> Карточка товара </h1>
+    <hr><br><br>
+   Артикул: {{ model.id }} <br>
+   Наименование товара: {{ model.name }} <br>
+   Дата поступление товара: {{ model.date }}
+   Описание: {{ model.description }} <br>
+   Цена: {{ model.price }} <br>
+   Теги: {{ lib.list(tags) }} <br>
+{% endblock content %}
