@@ -1,0 +1,10 @@
+{% macro list(items)%}
+<ul>
+    {% for item in items|batch(3) %}
+        {% for tags in item %}
+            <a href="{{ tags.0 }}">{{ tags.1 }}</a>
+            {% if loop.last==false %},{% endif%}
+        {% endfor %}<br>
+    {% endfor %}
+</ul>
+{% endmacro %}
