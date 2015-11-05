@@ -11,8 +11,7 @@ class Products
     public function actionShow()
     {
         $products = (new Product())->getAllProducts();
-      //  var_dump($products);
-        View::display($products,'products.tmpl');
+        View::display('products.tmpl',$products);
     }
 
     public function actionAdd()
