@@ -12,7 +12,7 @@ class Services
     public function actionShow()
     {
         $services = (new Service())->getAllServices();
-        View::display($services,'services.tmpl');
+        View::display('services.tmpl', $services);
     }
 
     public function actionAdd()
