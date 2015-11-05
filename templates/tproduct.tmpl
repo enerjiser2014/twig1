@@ -1,6 +1,11 @@
+{% import 'libmacro.tmpl' as lib %}
+
 <tr>
      <td>{{ i.id }}</td>
      <td>{{ i.name }}</td>
-     <td>{{ i.description }}</td>
+     <td>{{ i.productSummary | raw }}</td>
+     <td>{{ i.description[:15] }}</td>
      <td>{{ i.price }}</td>
+     <td>{{ i.date | date('y') }}</td>
+     <td>{{ lib.list(tags) }}</td>
  </tr>
