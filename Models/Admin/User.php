@@ -50,9 +50,10 @@ class User extends Model
 
     }
 
-    public function validEmail()
+    protected function validEmail()
     {
         $this->email=filter_var($this->email, FILTER_VALIDATE_EMAIL);
+        return $this->email;
     }
 
     public function getIdByEmail()
