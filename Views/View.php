@@ -4,7 +4,7 @@ namespace App\Views;
 
 class View
 {
-    public static function display($template,$m)
+    public static function display($template,$m=null)
     {
         $t = [
               1 => ['link1','name1'],
@@ -18,13 +18,22 @@ class View
               9 => ['link9','name9'],
 
             ];
-        $loader = new \Twig_Loader_Filesystem(__DIR__ . '\..\templates');
+        $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../templates');
         $twig = new \Twig_Environment($loader,
             [
                 'cache' => false,
                 'debug' => false,
             ]
             );
+
+        $twig->addGlobal('config', include __DIR__ . '/../config/config.php');
+
+        $filtereuro = new \Twig_SimpleFilter('euro',function($price){
+           return $price/72;
+        });
+
+        $twig->addFunction($filtereuro);
+
         $template = $twig->loadTemplate($template);
         echo $template->render(
             [
