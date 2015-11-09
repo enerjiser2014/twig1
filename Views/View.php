@@ -26,13 +26,7 @@ class View
             ]
             );
 
-        $twig->addGlobal('config', include __DIR__ . '/../config/config.php');
-
-        $filtereuro = new \Twig_SimpleFilter('euro',function($price){
-           return $price/72;
-        });
-
-        $twig->addFunction($filtereuro);
+        $twig->addExtension(new MyTwExtension());
 
         $template = $twig->loadTemplate($template);
         echo $template->render(
