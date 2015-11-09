@@ -9,5 +9,6 @@
    Дата поступление товара: {{ model.date }}
    Описание: {{ model.description }} <br>
    Цена: {{ model.price }} <br>
-   Теги: {{ lib.list(tags) }} <br>
+   {# теги: {{ lib.list(tags) }} <br>#}
+    Обратит внимание на эти товары: {{ lib.list(recomended(model.id)) }}<br>
 {% endblock content %}

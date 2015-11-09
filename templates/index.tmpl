@@ -5,6 +5,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="http://twig1/style.css"></script>
     <title></title>
 </head>
 <body>
@@ -29,10 +30,14 @@
                   <li><a href="/Products/actionShow">Товары</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#" data-toggle="modal" data-target="#myModal">Войти</a></li>
+                    <li><a href="#"  data-toggle="modal" data-target="#Register">Регистрация</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModal">Войти</a></li>
                 </ul>
               </div>
             </nav>
+
+            <h1>{{ config.title }}</h1>
+
         {% endblock header %}
 
         {% block content %}
@@ -47,34 +52,59 @@
                     &copy; Supper Company 2015 <br><br>
             </center>
         </div>
-
-            <!-- Modal -->
-             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-               <div class="modal-dialog modal-sm">
-                 <div class="modal-content">
-                   <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                     <h4 class="modal-title" id="myModalLabel">Форма авторизации</h4>
-                   </div>
-                   <div class="modal-body">
-                       <form>
-                       <input type="email" class="form-control" placeholder="Email address" required autofocus>
-                       <input type="password" class="form-control" placeholder="Password" required>
-                       <input type="checkbox" value="remember-me">Запомнить пароль
-                       </form>
-                   </div>
-                   <div class="modal-footer">
-                     <button type="button" class="btn btn-primary">Войити</button>
-                   </div>
-                 </div>
-               </div>
-             </div>
         {%  endblock footer %}
+
     </div>
-    <script>
-        $('document').ready(function(){
-        $('#modal').modal();
-        });
-    </script>
+    {% block modal %}
+        <!-- Форма авторизации -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Форма авторизации</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="/Login/actionLogin">
+                            <input name="email" type="email" class="form-control" placeholder="Email address" required autofocus>
+                            <input name="password" type="password" class="form-control" placeholder="Password" required>
+                            <input name="savepassword" type="checkbox" value="remember-me">Запомнить пароль
+                            <br>
+                            <a href="#" data-toggle="modal" data-target="#Register">Регистрация</a><br>
+                            <input type="submit" class="btn btn-primary" ></input>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Форма регистрации-->
+        <div class="modal fade" id="Register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Форма регистрации</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="/Login/actionRegister">
+                            <input name="name" type="name" class="form-control" placeholder="Имя" required autofocus>
+                            <input name="email" type="email" class="form-control" placeholder="Email address" required autofocus>
+                            <input name="password" type="password" class="form-control" placeholder="Password" required>
+                          <hr>
+                            <input type="submit" class="btn btn-primary" value="Зарегистрироваться"></input>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock modal %}
+
+    {% block scripting %}
+        <script>
+            $('document').ready(function(){
+            $('#modal').modal('myModal');
+            });
+        </script>
+    {% endblock scripting %}
 </body>
 </html>

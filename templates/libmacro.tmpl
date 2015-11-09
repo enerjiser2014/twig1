@@ -2,8 +2,14 @@
 <ul>
     {% for item in items|batch(3) %}
         {% for tags in item %}
-            <a href="{{ tags.0 }}">{{ tags.1 }}</a>{% if loop.last==false %},{% endif%}
+            <a href="{{ tags.0 }}">{{ tags.1 }}</a>{% if not loop.last %},{% endif%}
         {% endfor %}<br>
     {% endfor %}
 </ul>
+{% endmacro %}
+
+{% macro listmytags(items) %}
+    {% for item in items %}
+        <a href="{{ item.0 }}">{{ item.1 }}</a>
+    {% endfor %}
 {% endmacro %}

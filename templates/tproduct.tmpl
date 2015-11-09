@@ -1,11 +1,13 @@
 {% import 'libmacro.tmpl' as lib %}
 
-<tr>
+<tr {% if i.id is testrecomend %} style="background-color: #add8e6"{% endif %}>
      <td>{{ i.id }}</td>
      <td>{{ i.name }}</td>
-     <td>{{ i.productSummary | raw }}</td>
+     <td><a href="http://twig1/ProductSummary/actionShow?&productid={{ i.id }}">Карточка товара</a></td>
      <td>{{ i.description[:15] }}</td>
-     <td>{{ i.price }}</td>
+     <td><strong>{{ i.price }}</strong></td>
+     <td><small style="color: gray">{{ i.price |dollar }}</small></td>
+     <td><small style="color: lightgray">{{ i.price |euro}}</small></td>
      <td>{{ i.date | date('y') }}</td>
      <td>{{ lib.list(tags) }}</td>
  </tr>
