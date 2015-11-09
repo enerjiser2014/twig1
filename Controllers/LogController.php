@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\Admin\User;
 use App\Views\View;
 
-class Login
+class LogController
 {
     public function actionLogin()
     {
